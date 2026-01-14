@@ -352,10 +352,28 @@ public class Mundo implements Serializable{
             }
         }
         
-        // NÃO CHAMA turnoInimigo() - INIMIGOS NÃO SE MOVEM
-        System.out.println("Turno concluído. Inimigos permanecem estáticos.");
+        moverInimigosAposJogador();
         
         return true;
+    }
+
+    private void moverInimigosAposJogador() {
+        // Move todos os inimigos após o jogador se mover
+        for (Criatura inimigo : new java.util.ArrayList<>(geCriaturas())) {
+            if (!inimigo.taVivo() || inimigo == getJogador()) continue;
+            
+            // Movimento aleatório simples
+            int[][] direcoes = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+            java.util.Random rand = new java.util.Random();
+            int[] dir = direcoes[rand.nextInt(4)];
+            
+            Posicao novaPos = inimigo.getPosicao().adicionar(dir[0], dir[1]);
+            Celula celula = celulaEm(novaPos);
+            
+            if (celula.ETransitavel() && celula.getCriatura() == null) {
+                moverCriatura(inimigo, novaPos);
+            }
+        }
     }
 
     private String getNomeCriatura(Criatura c) {

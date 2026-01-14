@@ -1,6 +1,10 @@
 // Em GerenciadorCombate.java - Modifique completamente:
 package caverna.dominio.combate;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import caverna.dominio.entidade.*;
 import caverna.dominio.item.*;
 import caverna.dominio.mundo.*;
@@ -10,6 +14,7 @@ public class GerenciadorCombate {
     private final RegistroMensagens registro;
     private boolean emCombate = false;
     private Criatura alvoCombate;
+    private Random random = new Random();
     
     public GerenciadorCombate(Mundo mundo, RegistroMensagens registro) {
         this.mundo = mundo;
@@ -21,7 +26,7 @@ public class GerenciadorCombate {
         this.emCombate = true;
         this.alvoCombate = inimigo;
         registro.adicionar("COMBATE INICIADO! Você enfrenta um " + nomeCriatura(inimigo));
-        registro.adicionar("Escolha: A - Atacar, F - Fugir");
+        registro.adicionar("Escolha: Atacar ou Fugir");
     }
     
     // Método para processar ação no combate
@@ -132,30 +137,76 @@ public class GerenciadorCombate {
     }
     
     private void turnoInimigos() {
-        for (Criatura inimigo : new java.util.ArrayList<>(mundo.geCriaturas())) {
-            if (!inimigo.taVivo() || inimigo == mundo.getJogador()) continue;
-            
-            // Movimento simples dos inimigos
-            Posicao posJogador = mundo.getJogador().getPosicao();
+        // Criar uma cópia da lista para evitar problemas de concorrência
+        List<Criatura> inimigosParaMover = new ArrayList<>();
+        for (Criatura c : mundo.geCriaturas()) {
+            if (c != mundo.getJogador() && c.taVivo()) {
+                inimigosParaMover.add(c);
+            }
+        }
+        
+        for (Criatura inimigo : inimigosParaMover) {
             Posicao posInimigo = inimigo.getPosicao();
+            Posicao posJogador = mundo.getJogador().getPosicao();
             
-            // Distância Manhattan
+            // Distância Manhattan até o jogador
             int distX = Math.abs(posJogador.x() - posInimigo.x());
             int distY = Math.abs(posJogador.y() - posInimigo.y());
             int distancia = distX + distY;
             
-            // Se está perto (distância 1), não se move (já está adjacente)
-            // Se está longe, tenta se aproximar
-            if (distancia > 1 && distancia < 10) {
-                // Tenta mover na direção do jogador
-                int dx = Integer.compare(posJogador.x(), posInimigo.x());
-                int dy = Integer.compare(posJogador.y(), posInimigo.y());
+            // Se está adjacente ao jogador, não se move (já está na posição ideal)
+            if (distancia <= 1) {
+                continue;
+            }
+            
+            // DECISÃO: 80% chance de ir na direção do jogador, 20% aleatório
+            int dx = 0;
+            int dy = 0;
+            
+            if (random.nextInt(100) < 80) {
+                // Move na direção do jogador
+                if (distX > distY) {
+                    // Prioriza movimento horizontal
+                    dx = Integer.compare(posJogador.x(), posInimigo.x());
+                    dy = 0;
+                } else {
+                    // Prioriza movimento vertical
+                    dx = 0;
+                    dy = Integer.compare(posJogador.y(), posInimigo.y());
+                }
+            } else {
+                // Movimento aleatório
+                int[][] direcoes = {
+                    {0, -1},  // Cima
+                    {1, 0},   // Direita
+                    {0, 1},   // Baixo
+                    {-1, 0}   // Esquerda
+                };
                 
-                Posicao novaPos = posInimigo.adicionar(dx, dy);
-                Celula celula = mundo.celulaEm(novaPos);
+                // Escolhe uma direção aleatória
+                int[] dir = direcoes[random.nextInt(4)];
+                dx = dir[0];
+                dy = dir[1];
+            }
+            
+            Posicao novaPos = new Posicao(posInimigo.x() + dx, posInimigo.y() + dy);
+            Celula celulaAlvo = mundo.celulaEm(novaPos);
+            
+            // Verifica se a célula está livre para mover
+            if (celulaAlvo.ETransitavel() && celulaAlvo.getCriatura() == null) {
+                // Move o inimigo
+                mundo.moverCriatura(inimigo, novaPos);
                 
-                if (celula.ETransitavel() && celula.getCriatura() == null) {
-                    mundo.moverCriatura(inimigo, novaPos);
+                // Verifica se ficou adjacente ao jogador após mover
+                Posicao novaPosInimigo = inimigo.getPosicao();
+                int novaDistX = Math.abs(posJogador.x() - novaPosInimigo.x());
+                int novaDistY = Math.abs(posJogador.y() - novaPosInimigo.y());
+                
+                if (novaDistX <= 1 && novaDistY <= 1) {
+                    // Não loga toda hora para não poluir o log
+                    if (random.nextInt(100) < 30) { // 30% chance de logar
+                        registro.adicionar(nomeCriatura(inimigo) + " está próximo!");
+                    }
                 }
             }
         }
