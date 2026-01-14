@@ -39,64 +39,64 @@ Programação Orientada a Objetos
 
 
 📁 Estrutura do Projeto
-trabFinaLp2/
-│
-├── src/
-│   └── caverna/
-│       ├── ui/
-│       │   └── JanelaJogo.java
-│       │
-│       ├── persistencia/
-│       │   └── SaveJogo.java
-│       │
-│       ├── dominio/
-│       │   ├── mundo/
-│       │   │   ├── Mundo.java
-│       │   │   ├── Celula.java
-│       │   │   └── Posicao.java
-│       │   │
-│       │   ├── entidade/
-│       │   │   ├── Criatura.java
-│       │   │   ├── Jogador.java
-│       │   │   ├── Mamute.java
-│       │   │   ├── Tigre.java
-│       │   │   ├── Javali.java
-│       │   │   └── Morcego.java
-│       │   │
-│       │   ├── item/
-│       │   │   ├── Item.java
-│       │   │   ├── Arma.java
-│       │   │   ├── ErvaCurativa.java
-│       │   │   ├── CogumeloForca.java
-│       │   │   ├── AbrePassagem.java
-│       │   │   ├── Consumivel.java
-│       │   │   ├── Equipavel.java
-│       │   │   └── Interativo.java
-│       │   │
-│       │   ├── inventario/
-│       │   │   └── Inventario.java
-│       │   │
-│       │   └── combate/
-│       │       ├── GerenciadorCombate.java
-│       │       └── RegistroMensagens.java
-│
-├── imagens/
-│   ├── jogador.png
-│   ├── mamute.png
-│   ├── tigre.png
-│   ├── javali.png
-│   ├── morcego.png
-│   ├── graveto.png
-│   ├── clava.png
-│   ├── lanca.png
-│   ├── erva.png
-│   ├── cogumelo.png
-│   ├── picareta.png
-│   ├── parede.png
-│   ├── chao.png
-│   ├── pedra.png
-│   ├── vitoria.png
-│   └── derrota.png
+trabFinaLp2/ <br>
+│ <br>
+├── src/ <br>
+│   └── caverna/ <br>
+│       ├── ui/ <br>
+│       │   └── JanelaJogo.java <br>
+│       │ <br>
+│       ├── persistencia/ <br>
+│       │   └── SaveJogo.java <br>
+│       │ <br>
+│       ├── dominio/ <br>
+│       │   ├── mundo/ <br>
+│       │   │   ├── Mundo.java <br>
+│       │   │   ├── Celula.java <br>
+│       │   │   └── Posicao.java <br>
+│       │   │ <br>
+│       │   ├── entidade/ <br>
+│       │   │   ├── Criatura.java <br>
+│       │   │   ├── Jogador.java <br>
+│       │   │   ├── Mamute.java <br>
+│       │   │   ├── Tigre.java <br>
+│       │   │   ├── Javali.java <br>
+│       │   │   └── Morcego.java <br>
+│       │   │ <br>
+│       │   ├── item/ <br>
+│       │   │   ├── Item.java <br>
+│       │   │   ├── Arma.java <br>
+│       │   │   ├── ErvaCurativa.java <br>
+│       │   │   ├── CogumeloForca.java <br>
+│       │   │   ├── AbrePassagem.java <br>
+│       │   │   ├── Consumivel.java <br>
+│       │   │   ├── Equipavel.java <br>
+│       │   │   └── Interativo.java <br>
+│       │   │ <br>
+│       │   ├── inventario/ <br>
+│       │   │   └── Inventario.java <br>
+│       │   │ <br>
+│       │   └── combate/ <br>
+│       │       ├── GerenciadorCombate.java <br>
+│       │       └── RegistroMensagens.java <br>
+│ <br>
+├── imagens/ <br>
+│   ├── jogador.png <br>
+│   ├── mamute.png <br>
+│   ├── tigre.png <br>
+│   ├── javali.png <br>
+│   ├── morcego.png <br>
+│   ├── graveto.png <br>
+│   ├── clava.png <br>
+│   ├── lanca.png <br>
+│   ├── erva.png <br>
+│   ├── cogumelo.png <br>
+│   ├── picareta.png <br>
+│   ├── parede.png <br>
+│   ├── chao.png <br>
+│   ├── pedra.png <br>
+│   ├── vitoria.png <br>
+│   └── derrota.png <br>
 
 
 
