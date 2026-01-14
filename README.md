@@ -40,63 +40,62 @@ Programação Orientada a Objetos
 
 📁 Estrutura do Projeto
 trabFinaLp2/
-│
-├── src/
-│   └── caverna/
-│       ├── ui/
-│       │   └── JanelaJogo.java
-│       │
-│       ├── persistencia/
-│       │   └── SaveJogo.java
-│       │
-│       ├── dominio/
-│       │   ├── mundo/
-│       │   │   ├── Mundo.java
-│       │   │   ├── Celula.java
-│       │   │   └── Posicao.java
-│       │   │
-│       │   ├── entidade/
-│       │   │   ├── Criatura.java
-│       │   │   ├── Jogador.java
-│       │   │   ├── Mamute.java
-│       │   │   ├── Tigre.java
-│       │   │   ├── Javali.java
-│       │   │   └── Morcego.java
-│       │   │
-│       │   ├── item/
-│       │   │   ├── Item.java
-│       │   │   ├── Arma.java
-│       │   │   ├── ErvaCurativa.java
-│       │   │   ├── CogumeloForca.java
-│       │   │   ├── AbrePassagem.java
-│       │   │   ├── Consumivel.java
-│       │   │   ├── Equipavel.java
-│       │   │   └── Interativo.java
-│       │   │
-│       │   ├── inventario/
-│       │   │   └── Inventario.java
-│       │   │
-│       │   └── combate/
-│       │       ├── GerenciadorCombate.java
-│       │       └── RegistroMensagens.java
-│
-├── imagens/
-│   ├── jogador.png
-│   ├── mamute.png
-│   ├── tigre.png
-│   ├── javali.png
-│   ├── morcego.png
-│   ├── graveto.png
-│   ├── clava.png
-│   ├── lanca.png
-│   ├── erva.png
-│   ├── cogumelo.png
-│   ├── picareta.png
-│   ├── parede.png
-│   ├── chao.png
-│   ├── pedra.png
-│   ├── vitoria.png
-│   └── derrota.png
+-src/
+--caverna/
+---ui/
+----JanelaJogo.java
+|
+---persistencia/
+----SaveJogo.java
+|
+---dominio/
+----mundo/
+----- Mundo.java
+-----Celula.java
+-----Posicao.java
+|
+----entidade/
+-----Criatura.java
+-----Jogador.java
+-----Mamute.java
+-----Tigre.java
+-----Javali.java
+-----Morcego.java
+|
+----item/
+-----Item.java
+-----Arma.java
+-----ErvaCurativa.java
+-----CogumeloForca.java
+-----AbrePassagem.java
+-----Consumivel.java
+-----Equipavel.java
+-----Interativo.java
+|
+----inventario/
+-----Inventario.java
+|
+----combate/
+-----GerenciadorCombate.java
+-----RegistroMensagens.java
+|
+-imagens/
+--jogador.png
+--mamute.png
+--tigre.png
+--javali.png
+--morcego.png
+--graveto.png
+--clava.png
+--lanca.png
+--erva.png
+--cogumelo.png
+--picareta.png
+--parede.png
+--chao.png
+--pedra.png
+--vitoria.png
+--derrota.png
 
 
 
